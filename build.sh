@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 #
-# build.sh -- one-step build for the VB.NET binding: libitb3.so +
-# dotnet build. The solution's ProjectReference chain pulls the
-# sibling C# binding library (bindings/csharp/Everanium.LibItb3) in
-# automatically. Prerequisites (Go, dotnet-sdk) must be installed
-# separately; see README.md "Prerequisites" section.
+# One-step build for the VB.NET binding: libitb3.so + dotnet build. The
+# solution's ProjectReference chain pulls the sibling C# binding
+# library (bindings/csharp/Everanium.LibItb3) in automatically.
+# Prerequisites (Go, dotnet-sdk) must be installed separately; see
+# README.md "Prerequisites" section.
 #
 # The build starts from an empty tree: the bin/ and obj/ directories of
 # every project in the solution, plus any test result output, are
@@ -129,6 +129,7 @@ else
         bench/Everanium.LibItb3.VisualBasic.Bench/obj \
         eitb/Everanium.LibItb3.VisualBasic.Eitb/bin \
         eitb/Everanium.LibItb3.VisualBasic.Eitb/obj \
+        loop/bin                                   loop/obj \
         TestResults
 
     echo "==> cleaning the C# library solution member"
@@ -151,5 +152,6 @@ require_built "$CSHARP_LIB_DIR/bin/Release/net*/Everanium.LibItb3.dll"
 require_built "$BINDING_DIR/src/Everanium.LibItb3.VisualBasic/bin/Release/net*/Everanium.LibItb3.VisualBasic.dll"
 require_built "$BINDING_DIR/eitb/Everanium.LibItb3.VisualBasic.Eitb/bin/Release/net*/Everanium.LibItb3.VisualBasic.Eitb.dll"
 require_built "$BINDING_DIR/bench/Everanium.LibItb3.VisualBasic.Bench/bin/Release/net*/Everanium.LibItb3.VisualBasic.Bench.dll"
+require_built "$BINDING_DIR/loop/bin/Release/net*/Everanium.LibItb3.VisualBasic.Loop.dll"
 
 echo "==> ready: ./run_tests.sh"
